@@ -1,127 +1,93 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <meta charset="utf-8" />
+    <title>AI Work Item Assistant</title>
 
-    <script>
-        window.requirejs.config({
-            enforceDefine: true,
-            paths: {
-                'SDK': './lib/SDK.min'
-            }
-        });
+    <!-- Azure DevOps SDK -->
+    <script src="lib/SDK.min.js"></script>
 
-        window.requirejs(['SDK'], function (SDK) {
-            if (typeof SDK !== 'undefined') {
-                console.log("SDK is defined. Trying to initialize...");
-                SDK.init();
-                SDK.ready().then(() => {
-                    console.log("SDK is ready");
-                    document.getElementById("name").innerText = SDK.getUser().displayName;
-                });
-            } else {
-                console.log('SDK is not defined');
-            }
-        });
-    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- App JS -->
+    <script src="main.js" defer></script>
 </head>
 
-<body class="bg-slate-900 text-white min-h-screen p-6 font-sans">
+<body>
+<div class="container">
 
-<div class="max-w-4xl mx-auto bg-slate-800 rounded-xl shadow-lg p-8 space-y-6">
+    <h2>AI Work Item Assistant</h2>
 
-    <h2 class="text-2xl font-semibold text-blue-400">
-        AI Work Item Assistant
-    </h2>
-
-    <!-- Work Item Type -->
-    <div class="space-y-2">
-        <label class="block text-sm font-medium">Work item type</label>
-        <select id="witType"
-                class="w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
-            <option value="Product Backlog Item">PBI</option>
+    <div class="form-group">
+        <label for="witType">Work item type</label>
+        <select id="witType">
+            <option value="Product Backlog Item">Product Backlog Item</option>
             <option value="Bug">Bug</option>
             <option value="Task">Task</option>
         </select>
     </div>
 
-    <!-- Notes -->
-    <div class="space-y-2">
-        <label class="block text-sm font-medium">Notes / Meeting text</label>
-        <textarea id="notes" rows="8"
-                  placeholder="Paste notes here..."
-                  class="w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none resize-none"></textarea>
+    <div class="form-group">
+        <label for="notes">Notes / Meeting text</label>
+        <textarea id="notes" rows="6"
+                  placeholder="Paste notes here..."></textarea>
     </div>
 
-    <!-- Detail Mode -->
-    <div class="space-y-2">
-        <label class="block text-sm font-medium">Detail level</label>
-        <select id="mode"
-                class="w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+    <div class="form-group">
+        <label for="mode">Detail level</label>
+        <select id="mode">
             <option value="standard">Standard</option>
             <option value="short">Short</option>
             <option value="detailed">Detailed</option>
         </select>
     </div>
 
-    <!-- Buttons -->
-    <div class="flex flex-wrap gap-3 pt-2">
-        <button id="btnGenerate"
-                class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium transition">
+    <div class="button-row">
+        <button id="btnGenerate" class="primary">
             Generate
         </button>
 
-        <button id="btnCreate" disabled
-                class="bg-green-600 hover:bg-green-700 disabled:bg-slate-600 disabled:cursor-not-allowed px-4 py-2 rounded-md font-medium transition">
+        <button id="btnCreate" class="primary" disabled>
             Create Work Item
         </button>
 
-        <button id="btnCopy" disabled
-                class="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-600 disabled:cursor-not-allowed px-4 py-2 rounded-md font-medium transition">
+        <button id="btnCopy" class="secondary" disabled>
             Copy JSON
         </button>
     </div>
 
-    <!-- Status -->
-    <div id="status" class="text-sm text-slate-300"></div>
+    <div id="status" class="status"></div>
 
-    <hr class="border-slate-600" />
+    <div class="preview">
+        <h3>Preview</h3>
 
-    <!-- Preview -->
-    <div class="space-y-4">
-        <h3 class="text-xl font-semibold text-blue-300">Preview</h3>
-
-        <div>
-            <span class="font-semibold">Title:</span>
-            <span id="prevTitle" class="text-slate-200"></span>
+        <div class="preview-section">
+            <strong>Title:</strong>
+            <div id="prevTitle"></div>
         </div>
 
-        <div>
-            <div class="font-semibold">Description:</div>
-            <div id="prevDesc"
-                 class="bg-slate-700 p-3 rounded-md text-sm mt-1"></div>
+        <div class="preview-section">
+            <strong>Description:</strong>
+            <div id="prevDesc"></div>
         </div>
 
-        <div>
-            <div class="font-semibold">Acceptance Criteria:</div>
-            <ul id="prevAc"
-                class="list-disc list-inside text-sm mt-1 space-y-1 text-slate-200"></ul>
+        <div class="preview-section">
+            <strong>Acceptance Criteria:</strong>
+            <ul id="prevAc"></ul>
         </div>
 
-        <div>
-            <div class="font-semibold">Tasks:</div>
-            <ul id="prevTasks"
-                class="list-disc list-inside text-sm mt-1 space-y-1 text-slate-200"></ul>
+        <div class="preview-section">
+            <strong>Tasks:</strong>
+            <ul id="prevTasks"></ul>
         </div>
 
-        <div>
-            <span class="font-semibold">Tags:</span>
-            <span id="prevTags" class="text-slate-200"></span>
+        <div class="preview-section">
+            <strong>Tags:</strong>
+            <div id="prevTags"></div>
         </div>
     </div>
 
 </div>
-
 </body>
 </html>
