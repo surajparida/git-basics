@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AI Work Item Assistant</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- If your org blocks CDN, do NOT use external require.js.
+         Keep using whatever approach you used in the tutorial (require.js local or bundling). -->
+</head>
+<body>
+<div class="container">
+    <h2>AI Work Item Assistant</h2>
+
+    <div class="row">
+        <label>Work item type</label>
+        <select id="witType">
+            <option value="Product Backlog Item">PBI</option>
+            <option value="Bug">Bug</option>
+            <option value="Task">Task</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label>Notes / Meeting text</label>
+        <textarea id="notes" rows="10" placeholder="Paste notes here..."></textarea>
+    </div>
+
+    <div class="row inline">
+        <label>Detail level</label>
+        <select id="mode">
+            <option value="standard">Standard</option>
+            <option value="short">Short</option>
+            <option value="detailed">Detailed</option>
+        </select>
+    </div>
+
+    <div class="buttons">
+        <button id="btnGenerate">Generate</button>
+        <button id="btnCreate" disabled>Create Work Item</button>
+        <button id="btnCopy" disabled>Copy JSON</button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <hr />
+
+    <h3>Preview</h3>
+    <div class="preview">
+        <div><b>Title:</b> <span id="prevTitle"></span></div>
+        <div><b>Description:</b></div>
+        <div id="prevDesc" class="htmlbox"></div>
+        <div><b>Acceptance Criteria:</b></div>
+        <ul id="prevAc"></ul>
+        <div><b>Tasks:</b></div>
+        <ul id="prevTasks"></ul>
+        <div><b>Tags:</b> <span id="prevTags"></span></div>
+    </div>
+</div>
+
+<script src="ai-hub.js"></script>
+</body>
+</html>
