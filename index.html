@@ -1,62 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>AI Work Item Assistant</title>
-    <link rel="stylesheet" href="styles.css" />
-    <!-- If your org blocks CDN, do NOT use external require.js.
-         Keep using whatever approach you used in the tutorial (require.js local or bundling). -->
-</head>
-<body>
-<div class="container">
-    <h2>AI Work Item Assistant</h2>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 
-    <div class="row">
-        <label>Work item type</label>
-        <select id="witType">
+    <script>
+        window.requirejs.config({
+            enforceDefine: true,
+            paths: {
+                'SDK': './lib/SDK.min'
+            }
+        });
+
+        window.requirejs(['SDK'], function (SDK) {
+            if (typeof SDK !== 'undefined') {
+                console.log("SDK is defined. Trying to initialize...");
+                SDK.init();
+                SDK.ready().then(() => {
+                    console.log("SDK is ready");
+                    document.getElementById("name").innerText = SDK.getUser().displayName;
+                });
+            } else {
+                console.log('SDK is not defined');
+            }
+        });
+    </script>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen p-6 font-sans">
+
+<div class="max-w-4xl mx-auto bg-slate-800 rounded-xl shadow-lg p-8 space-y-6">
+
+    <h2 class="text-2xl font-semibold text-blue-400">
+        AI Work Item Assistant
+    </h2>
+
+    <!-- Work Item Type -->
+    <div class="space-y-2">
+        <label class="block text-sm font-medium">Work item type</label>
+        <select id="witType"
+                class="w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
             <option value="Product Backlog Item">PBI</option>
             <option value="Bug">Bug</option>
             <option value="Task">Task</option>
         </select>
     </div>
 
-    <div class="row">
-        <label>Notes / Meeting text</label>
-        <textarea id="notes" rows="10" placeholder="Paste notes here..."></textarea>
+    <!-- Notes -->
+    <div class="space-y-2">
+        <label class="block text-sm font-medium">Notes / Meeting text</label>
+        <textarea id="notes" rows="8"
+                  placeholder="Paste notes here..."
+                  class="w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none resize-none"></textarea>
     </div>
 
-    <div class="row inline">
-        <label>Detail level</label>
-        <select id="mode">
+    <!-- Detail Mode -->
+    <div class="space-y-2">
+        <label class="block text-sm font-medium">Detail level</label>
+        <select id="mode"
+                class="w-full rounded-md bg-slate-700 border border-slate-600 px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
             <option value="standard">Standard</option>
             <option value="short">Short</option>
             <option value="detailed">Detailed</option>
         </select>
     </div>
 
-    <div class="buttons">
-        <button id="btnGenerate">Generate</button>
-        <button id="btnCreate" disabled>Create Work Item</button>
-        <button id="btnCopy" disabled>Copy JSON</button>
+    <!-- Buttons -->
+    <div class="flex flex-wrap gap-3 pt-2">
+        <button id="btnGenerate"
+                class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium transition">
+            Generate
+        </button>
+
+        <button id="btnCreate" disabled
+                class="bg-green-600 hover:bg-green-700 disabled:bg-slate-600 disabled:cursor-not-allowed px-4 py-2 rounded-md font-medium transition">
+            Create Work Item
+        </button>
+
+        <button id="btnCopy" disabled
+                class="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-600 disabled:cursor-not-allowed px-4 py-2 rounded-md font-medium transition">
+            Copy JSON
+        </button>
     </div>
 
-    <div id="status" class="status"></div>
+    <!-- Status -->
+    <div id="status" class="text-sm text-slate-300"></div>
 
-    <hr />
+    <hr class="border-slate-600" />
 
-    <h3>Preview</h3>
-    <div class="preview">
-        <div><b>Title:</b> <span id="prevTitle"></span></div>
-        <div><b>Description:</b></div>
-        <div id="prevDesc" class="htmlbox"></div>
-        <div><b>Acceptance Criteria:</b></div>
-        <ul id="prevAc"></ul>
-        <div><b>Tasks:</b></div>
-        <ul id="prevTasks"></ul>
-        <div><b>Tags:</b> <span id="prevTags"></span></div>
+    <!-- Preview -->
+    <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-blue-300">Preview</h3>
+
+        <div>
+            <span class="font-semibold">Title:</span>
+            <span id="prevTitle" class="text-slate-200"></span>
+        </div>
+
+        <div>
+            <div class="font-semibold">Description:</div>
+            <div id="prevDesc"
+                 class="bg-slate-700 p-3 rounded-md text-sm mt-1"></div>
+        </div>
+
+        <div>
+            <div class="font-semibold">Acceptance Criteria:</div>
+            <ul id="prevAc"
+                class="list-disc list-inside text-sm mt-1 space-y-1 text-slate-200"></ul>
+        </div>
+
+        <div>
+            <div class="font-semibold">Tasks:</div>
+            <ul id="prevTasks"
+                class="list-disc list-inside text-sm mt-1 space-y-1 text-slate-200"></ul>
+        </div>
+
+        <div>
+            <span class="font-semibold">Tags:</span>
+            <span id="prevTags" class="text-slate-200"></span>
+        </div>
     </div>
+
 </div>
 
-<script src="ai-hub.js"></script>
 </body>
 </html>
