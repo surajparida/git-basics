@@ -1,0 +1,50 @@
+{
+    "manifestVersion": 1,
+    "id": "ai-workitem",
+    "publisher": "ext",
+    "name": "AI Work Item Assistant",
+    "version": "1.0.0",
+    "description": "Generate Azure DevOps work items using AI.",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "categories": [
+        "Azure Boards"
+    ],
+    "icons": {
+        "default": "icon.png"
+    },
+    "files": [
+        {
+            "path": "index.html",
+            "addressable": true
+        },
+        {
+            "path": "main.js",
+            "addressable": true
+        },
+        {
+            "path": "styles.css",
+            "addressable": true
+        },
+        {
+            "path": "lib",
+            "addressable": true
+        }
+    ],
+    "contributions": [
+        {
+            "id": "ai-workitem-hub",
+            "type": "ms.vss-web.hub",
+            "targets": [
+                "ms.vss-work-web.work-hub-group"
+            ],
+            "properties": {
+                "name": "AI Work Item Assistant",
+                "uri": "index.html"
+            }
+        }
+    ]
+}
