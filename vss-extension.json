@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "ai-workitem",
-    "publisher": "ext",
+    "publisher": "adoaitest",
     "name": "AI Work Item Assistant",
     "version": "1.0.0",
     "description": "Generate Azure DevOps work items using AI.",
