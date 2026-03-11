@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>AI Work Item Assistant</title>
 
-    <script src="lib/SDK.min.js"></script>
+    <script src="https://unpkg.com/vss-web-extension-sdk/lib/VSS.SDK.min.js"></script>
+    <script src="main.js"></script>
 
-    <link rel="stylesheet" href="styles.css" />
-
-    <!-- App JS -->
-    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 
 <body>
@@ -17,73 +15,44 @@
 
     <h2>AI Work Item Assistant</h2>
 
-    <div class="form-group">
-        <label for="witType">Work item type</label>
-        <select id="witType">
-            <option value="Product Backlog Item">Product Backlog Item</option>
-            <option value="Bug">Bug</option>
-            <option value="Task">Task</option>
-        </select>
+    <div class="form-group"><label for="witType">Work item type</label> <select id="witType">
+        <option value="PBI">Product Backlog Item</option>
+        <option value="Bug">Bug</option>
+        <option value="Task">Task</option>
+    </select></div>
+    <div class="form-group"><label for="notes">Notes / Meeting text</label> <textarea id="notes" rows="6"
+                                                                                      placeholder="Paste notes here..."></textarea>
     </div>
-
-    <div class="form-group">
-        <label for="notes">Notes / Meeting text</label>
-        <textarea id="notes" rows="6"
-                  placeholder="Paste notes here..."></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="mode">Detail level</label>
-        <select id="mode">
-            <option value="standard">Standard</option>
-            <option value="short">Short</option>
-            <option value="detailed">Detailed</option>
-        </select>
-    </div>
-
+    <div class="form-group"><label for="mode">Detail level</label> <select id="mode">
+        <option value="standard">Standard</option>
+        <option value="short">Short</option>
+        <option value="detailed">Detailed</option>
+    </select></div>
     <div class="button-row">
-        <button id="btnGenerate" class="primary">
-            Generate
-        </button>
-
-        <button id="btnCreate" class="primary" disabled>
-            Create Work Item
-        </button>
-
-        <button id="btnCopy" class="secondary" disabled>
-            Copy JSON
-        </button>
+        <button id="btnGenerate" class="primary"> Generate</button>
+        <button id="btnCreate" class="primary" disabled> Create Work Item</button>
+        <button id="btnCopy" class="secondary" disabled> Copy JSON</button>
     </div>
-
     <div id="status" class="status"></div>
-
-    <div class="preview">
-        <h3>Preview</h3>
-
-        <div class="preview-section">
-            <strong>Title:</strong>
+    <div class="preview"><h3>Preview</h3>
+        <div class="preview-section"><strong>Title:</strong>
             <div id="prevTitle"></div>
         </div>
-
-        <div class="preview-section">
-            <strong>Description:</strong>
+        <div class="preview-section"><strong>Description:</strong>
             <div id="prevDesc"></div>
         </div>
-
-        <div class="preview-section">
-            <strong>Acceptance Criteria:</strong>
+        <div class="preview-section"><strong>Acceptance Criteria:</strong>
             <ul id="prevAc"></ul>
         </div>
-
-        <div class="preview-section">
-            <strong>Tasks:</strong>
+        <div class="preview-section"><strong>Tasks:</strong>
             <ul id="prevTasks"></ul>
         </div>
-
-        <div class="preview-section">
-            <strong>Tags:</strong>
+        <div class="preview-section"><strong>Tags:</strong>
             <div id="prevTags"></div>
         </div>
+    </div> <!-- Backend Response Section -->
+    <div class="api-response"><h3>API Response</h3>
+        <pre id="apiResponse"></pre>
     </div>
 
 </div>

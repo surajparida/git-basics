@@ -3,7 +3,7 @@
     "id": "ai-workitem",
     "publisher": "adoaitest",
     "name": "AI Work Item Assistant",
-    "version": "1.0.0",
+    "version": "1.0.10",
     "description": "Generate Azure DevOps work items using AI.",
     "targets": [
         {
@@ -30,7 +30,7 @@
             "addressable": true
         },
         {
-            "path": "lib",
+            "path": "lib/SDK.min.js",
             "addressable": true
         }
     ],
