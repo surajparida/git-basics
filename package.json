@@ -1,0 +1,20 @@
+{
+  "name": "ai-workitem-extension",
+  "version": "1.0.0",
+  "description": "AI Work Item Assistant for Azure DevOps",
+  "private": true,
+  "scripts": {
+    "build": "echo Build step not required",
+    "package": "tfx extension create --manifest-globs vss-extension.json",
+    "publish": "tfx extension publish --manifest-globs vss-extension.json"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tfx-cli": "^0.16.0"
+  },
+  "overrides": {
+    "meow": "10.1.5",
+    "get-stdin": "9.0.0"
+  }
+}
