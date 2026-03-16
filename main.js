@@ -23,7 +23,7 @@ document.getElementById("btnGenerate")
         try {
 
             const response = await fetch(
-                "/api/work-items/create",
+                "URL",
                 {
                     method: "POST",
                     headers: {
@@ -31,8 +31,9 @@ document.getElementById("btnGenerate")
                     },
                     body: JSON.stringify({
                         notes: notes,
-                        workItemType: witType,
-                        extraContext: mode
+                        work_item_type: witType,
+                        create_in_ado: true,
+                        project_name: 'XXXX'
                     })
                 }
             );
