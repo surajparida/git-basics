@@ -16,6 +16,7 @@
     <h2>AI Work Item Assistant</h2>
 
     <div class="form-group"><label for="witType">Work item type</label> <select id="witType">
+        <option value="Epic">Epic</option>
         <option value="PBI">Product Backlog Item</option>
         <option value="Bug">Bug</option>
         <option value="Task">Task</option>
@@ -23,15 +24,10 @@
     <div class="form-group"><label for="notes">Notes / Meeting text</label> <textarea id="notes" rows="6"
                                                                                       placeholder="Paste notes here..."></textarea>
     </div>
-    <div class="form-group"><label for="mode">Detail level</label> <select id="mode">
-        <option value="standard">Standard</option>
-        <option value="short">Short</option>
-        <option value="detailed">Detailed</option>
-    </select></div>
     <div class="button-row">
         <button id="btnGenerate" class="primary"> Generate</button>
-        <button id="btnCreate" class="primary" disabled> Create Work Item</button>
-        <button id="btnCopy" class="secondary" disabled> Copy JSON</button>
+        <button id="btnCreate" class="primary"> Create </button>
+        <button id="btnCreate" class="primary"> Upload File </button>
     </div>
     <div id="status" class="status"></div>
     <div class="preview"><h3>Preview</h3>

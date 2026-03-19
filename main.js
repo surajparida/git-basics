@@ -6,11 +6,15 @@ usePlatformScripts: true
 VSS.ready(function () {
 console.log("Azure DevOps SDK Ready");
 
+const webContext = VSS.getWebContext();
+const projectId = webContext.project ? webContext.project.id: "";
+const projectName = webContext.project ? webContext.project.name : "";
+
 document.getElementById("btnGenerate")
     .addEventListener("click", async function () {
-
+        const baseUrl =  "https://ai-aca-agt-prj0067566-wrkitm-bkd.orangeglacier-f13d9e59.eastus.azurecontainerapps.io/generate";
+        const generateUrl = `${baseUrl}/generate`
         const notes = document.getElementById("notes").value;
-        const mode = document.getElementById("mode").value;
         const witType = document.getElementById("witType").value;
 
         if (!notes) {
@@ -21,9 +25,8 @@ document.getElementById("btnGenerate")
         setStatus("Generating work item content using AI...");
 
         try {
-
             const response = await fetch(
-                "URL",
+               baseUrl,
                 {
                     method: "POST",
                     headers: {
@@ -33,7 +36,7 @@ document.getElementById("btnGenerate")
                         notes: notes,
                         work_item_type: witType,
                         create_in_ado: true,
-                        project_name: 'XXXX'
+                        project_name: 'DevSecOpstools'
                     })
                 }
             );
