@@ -10,7 +10,7 @@ VSS.ready(function () {
     const projectId = webContext.project ? webContext.project.id : "";
     const projectName = webContext.project ? webContext.project.name : "";
 
-    const baseUrl = "https://somebackend.com/service";
+    const baseUrl =  "https://ai-aca-agt-prj0067566-wrkitm-bkd.orangeglacier-f13d9e59.eastus.azurecontainerapps.io";
     const generateUrl = `${baseUrl}/generate`;
 
     // =========================
@@ -42,12 +42,53 @@ VSS.ready(function () {
                         project_name: projectName || "DevSecOpstools"
                     })
                 });
-
                 const data = await response.json();
 
+
+
+
+               /* const data = {
+                                    "work_item_type": "Bug",
+                                    "project_name": "Phoenix Platform",
+                                    "generated": {
+                                      "title": "Fix intermittent timeout issue in payment service",
+                                      "description": "## Summary\nInvestigate and resolve intermittent timeout errors occurring in the payment processing service under high load conditions.\n\n## Details\nThe issue appears when concurrent requests exceed threshold limits.",
+                                      "valueStatement": "As a platform reliability engineer, we want stable payment processing so that users experience seamless transactions.",
+                                      "acceptanceCriteria": [
+                                        "Timeout errors reduced by at least 90% under load testing",
+                                        "No regression in existing payment workflows",
+                                        "Monitoring alerts configured for latency spikes"
+                                      ],
+                                      "tasks": [
+                                        "Analyze logs to identify root cause",
+                                        "Optimize database query performance",
+                                        "Implement retry mechanism with exponential backoff",
+                                        "Conduct load testing in staging environment"
+                                      ],
+                                      "assumptions": [
+                                        "Load testing environment mimics production traffic patterns",
+                                        "Database indexes can be modified without downtime"
+                                      ],
+                                      "dependencies": [
+                                        "Access to production-like dataset",
+                                        "Coordination with DevOps for load testing setup"
+                                      ],
+                                      "questions": [
+                                        "What is the acceptable latency threshold for payment processing?",
+                                        "Should we introduce circuit breaker pattern?"
+                                      ],
+                                      "confidence": 0.78
+                                    },
+                                    "ado_result": null,
+                                    "error": null,
+                                    "raw": null
+                                  };
+
+*/
+
                 // Show raw API response
-                document.getElementById("apiResponse").textContent =
-                    JSON.stringify(data, null, 2);
+              /*  document.getElementById("apiResponse").textContent =
+                    JSON.stringify(data, null, 2);*/
 
                 // Populate preview
                 populatePreview(data);
@@ -61,8 +102,8 @@ VSS.ready(function () {
 
                 setStatus("Error calling AI backend.");
 
-                document.getElementById("apiResponse").textContent =
-                    "Error: " + error.message;
+                /*document.getElementById("apiResponse").textContent =
+                    "Error: " + error.message;*/
             }
         });
 
@@ -94,8 +135,8 @@ VSS.ready(function () {
                         json.generated?.description || "";
 
                     // Show raw JSON
-                    document.getElementById("apiResponse").textContent =
-                        JSON.stringify(json, null, 2);
+                   /* document.getElementById("apiResponse").textContent =
+                        JSON.stringify(json, null, 2);*/
 
                     // Populate preview
                     populatePreview(json);

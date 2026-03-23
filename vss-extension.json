@@ -3,7 +3,7 @@
     "id": "ai-workitem",
     "publisher": "adoaitest",
     "name": "AI Work Item Assistant",
-    "version": "1.0.13",
+    "version": "1.0.21",
     "description": "Generate Azure DevOps work items using AI.",
     "targets": [
         {

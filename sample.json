@@ -1,0 +1,36 @@
+{
+  "work_item_type": "Bug",
+  "project_name": "Phoenix Platform",
+  "generated": {
+    "title": "Fix intermittent timeout issue in payment service",
+    "description": "## Summary\nInvestigate and resolve intermittent timeout errors occurring in the payment processing service under high load conditions.\n\n## Details\nThe issue appears when concurrent requests exceed threshold limits.",
+    "valueStatement": "As a platform reliability engineer, we want stable payment processing so that users experience seamless transactions.",
+    "acceptanceCriteria": [
+      "Timeout errors reduced by at least 90% under load testing",
+      "No regression in existing payment workflows",
+      "Monitoring alerts configured for latency spikes"
+    ],
+    "tasks": [
+      "Analyze logs to identify root cause",
+      "Optimize database query performance",
+      "Implement retry mechanism with exponential backoff",
+      "Conduct load testing in staging environment"
+    ],
+    "assumptions": [
+      "Load testing environment mimics production traffic patterns",
+      "Database indexes can be modified without downtime"
+    ],
+    "dependencies": [
+      "Access to production-like dataset",
+      "Coordination with DevOps for load testing setup"
+    ],
+    "questions": [
+      "What is the acceptable latency threshold for payment processing?",
+      "Should we introduce circuit breaker pattern?"
+    ],
+    "confidence": 0.78
+  },
+  "ado_result": null,
+  "error": null,
+  "raw": null
+}
