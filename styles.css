@@ -87,9 +87,11 @@ button:disabled {
 }
 
 .preview {
-    margin-top: 30px;
-    border-top: 1px solid #e1dfdd;
-    padding-top: 20px;
+  max-height: 400px;   /* or whatever fits your UI */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .preview h3 {

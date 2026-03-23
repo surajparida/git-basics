@@ -95,7 +95,7 @@ VSS.ready(function () {
 
                 document.getElementById("btnCreate").disabled = false;
 
-                setStatus("Preview generated successfully.");
+                setStatus("");
 
             } catch (error) {
                 console.error(error);
